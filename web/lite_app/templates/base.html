@@ -15,6 +15,9 @@
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
             crossorigin="anonymous"></script>
 
+    <!-- custom css -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet"/>
+
     <title>
         {% block title %}
         {% endblock %}
@@ -23,11 +26,12 @@
 
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="{{ url_for('home_page') }}">Flask</a>
+    <a class="navbar-brand" href="{{ url_for('home_page') }}"><img
+            src="{{ url_for('static', filename='images/logo.png') }}" width=50></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse " id="navbarNav">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('home_page') }}">Home</a>
@@ -68,11 +72,4 @@
 {% endblock %}
 
 </body>
-<style>
-    body {
-        background-color: #212121;
-        color: white;
-    }
-
-</style>
 </html>

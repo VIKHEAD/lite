@@ -2,6 +2,7 @@ from flask import Flask, request, Response, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+from flask_migrate import Migrate
 from lite_app.config import DEV_DB, PROD_DB
 import os
 import secrets
@@ -14,6 +15,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config['SECRET_KEY'] = secrets.token_hex()
 app.config['SECRET_KEY'] = '304da0ded9b209ad36f9182bdfcc8d9a28fbd116694f42ba7f147b78e9e7e48e'
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 
