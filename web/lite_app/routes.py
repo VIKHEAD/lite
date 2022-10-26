@@ -24,7 +24,7 @@ def register_page():
         return redirect(url_for('login_page'))
     if form.errors != {}:
         for err_msg in form.errors.values():
-            flash(err_msg, category='danger')
+            flash(err_msg[0], category='danger')
     return render_template('register.html', form=form)
 
 
