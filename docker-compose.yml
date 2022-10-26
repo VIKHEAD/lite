@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+  web:
+    build: web
+    restart: always
+    ports:
+      - 8888:8668
+    environment:
+      - DEBUG=0
+    networks:
+      - flask_network
+
+  proxy:
+    build: proxy
+    restart: always
+    ports:
+      - 800:80
+    networks:
+      - flask_network
+
+  db:
+    image: postgres:14
+    restart: always
+    ports:
+      - 5433:5432
+    networks:
+      - flask_network
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=lite
+    volumes:
+    - postgres_data:/var/lib/postgresql/data
+
+networks:
+  flask_network:
+
+volumes:
+  postgres_data:
