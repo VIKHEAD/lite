@@ -5,36 +5,60 @@ Home
 {% endblock %}
 
 {% block body %}
-<body class="text-center">
+<body>
 <div class="container text-center">
-    {% if current_user.is_authenticated %}
-    <h1>List of users</h1>
-    <table class="table table-dark">
-        <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Password</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-        <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.username }}</td>
-            <td>{{ user.email_address }}</td>
-            <td>{{ user.password }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    {% else %}
-    <h1 class="text-center">You at home page. Relax)</h1>
-    <img src="{{ url_for('static', filename='images/background.jpg') }}" width=100%/>
-    {% endif %}
+    <div class="row">
 
+        {% if current_user.is_authenticated %}
+
+        <div class="col-12 col-lg-2">
+            <h3 class="text-center rate">Rate NBU</h3>
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-secondary">
+                    <i class="fa-solid fa-dollar-sign rate"> : </i> {{ usd }}
+                </li>
+                <li class="list-group-item list-group-item-secondary">
+                    <i class="fa-solid fa-euro-sign rate"> : </i> {{ eur }}
+                </li>
+            </ul>
+        </div>
+        <div class="col-12 col-lg-10">
+            <div class="table-responsive text-center">
+                <h3 class="rate">List of users</h3>
+                <table class="table table-dark table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+<!--                        <th scope="col">Password</th>-->
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for user in users %}
+
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email_address }}</td>
+<!--                        <td>{{ user.password }}</td>-->
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        {% else %}
+
+        <h1 class="text-center">You at home page. Relax)</h1>
+        <img src="{{ url_for('static', filename='images/background.jpg') }}" width=100%/>
+
+        {% endif %}
+    </div>
 </div>
 </body>
-
 {% endblock %}
