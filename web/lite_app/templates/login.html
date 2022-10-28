@@ -5,10 +5,10 @@ Login
 {% endblock %}
 
 {% block body %}
-<body class="text-center">
-<div class="container col-sm-8 col-lg-4">
+<body>
+<div class="container col-sm-8 col-lg-4 text-center">
     <form class="form-signin" method="post">
-        <h1>
+        <h1 class="rate">
             Please Login
         </h1>
         {{ form.hidden_tag() }}
@@ -18,7 +18,7 @@ Login
         {{ form.password.label(class="form-label") }}
         {{ form.password(class="form-control", placeholder="Password") }}
         <br/>
-        <a href="{{ url_for('register_page') }}"><h6>Don't have account</h6></a>
+        <a href="{{ url_for('register_page') }}" class="rate"><h6>Don't have account</h6></a>
         <br/>
         {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
     </form>

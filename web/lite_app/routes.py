@@ -4,12 +4,29 @@ from flask_login import login_user, logout_user
 from lite_app.models import Users
 from lite_app.forms import RegisterForm, LoginForm
 from lite_app import db
+from datetime import datetime
+import requests
+import json
 
 
 @app.route("/", methods=['GET'])
 def home_page():
     users = Users.query.all()
-    return render_template('home.html', users=users)
+    date_r = datetime.now().strftime("%Y%m%d")
+    usd = 0
+    eur = 0
+    try:
+        value = requests.get(
+            f"https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json&date={date_r}")
+        if value.status_code == 200:
+            for rate in json.loads(value.text):
+                if rate.get('cc') == 'USD':
+                    usd = rate.get('rate')
+                if rate.get('cc') == 'EUR':
+                    eur = rate.get('rate')
+    except:
+        flash("Can't connect to NBU", category='info')
+    return render_template('home.html', users=users, usd=usd, eur=eur)
 
 
 @app.route('/register', methods=['GET', 'POST'])

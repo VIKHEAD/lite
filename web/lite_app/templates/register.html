@@ -5,10 +5,10 @@ Registration
 {% endblock %}
 
 {% block body %}
-<body class="text-center">
-<div class="container col-sm-8 col-lg-4">
+<body>
+<div class="container col-sm-8 col-lg-4 text-center">
     <form class="form-register" method="post">
-        <h1>
+        <h1 class="rate">
             Registration
         </h1>
         {{ form.hidden_tag() }}
@@ -24,7 +24,7 @@ Registration
         {{ form.password2.label(class="form-label") }}
         {{ form.password2(class="form-control", placeholder="Confirm password") }}
         <br/>
-        <a href="{{ url_for('login_page') }}"><h6>Already have an account?</h6></a>
+        <a href="{{ url_for('login_page') }}" class="rate"><h6>Already have an account?</h6></a>
         <br/>
         {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
     </form>
